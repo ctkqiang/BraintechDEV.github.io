@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+######################################
+# BRAINTECH PRIVATE LIMITED
+# JOHN MELODY MELISSA
+######################################
+# यह स्क्रिप्ट John Melody द्वारा लिखा गया है।
+# PYTHON में पूरी तरह  से द्वारा संचालित. सभी
+# अधिकार सुरक्षित |  इस स्क्रिप्ट का कोई भी
+# हिस्सा अनधिकृत पार्टी द्वारा
+# पुनरुत्पादित किया जा सकता है।
+######################################
 from cmd import Cmd as Braintech
 import serial.tools.list_ports
 import serial
@@ -6,8 +17,10 @@ import threading
 from subprocess import Popen, PIPE
 
 class BraintechTERMINAL(Braintech):
+    os.system("title Braintech Serial Monitor")
     print("Copyright (C) BRAINTECH SDN BHD MALAYSIA")
     print("Type \"help\" for HELP on the usage.")
+
     def do_exit(self, inp):
         return True
 
@@ -17,9 +30,9 @@ class BraintechTERMINAL(Braintech):
     def do_read_serial(self, inp):
         ports = list(serial.tools.list_ports.comports())
         for p in ports:
-            if "USB-SERIAL CH340" in p[1] and "1" in p[0]:
+            if "USB-SERIAL CH340" in p[1] and "4" in p[0]:
                 print(p[1])
-                with serial.Serial("COM1", 115200, timeout=1) as ser:
+                with serial.Serial("COM4", 115200, timeout=1) as ser:
                     print(ser.readline())
             elif "USB-SERIAL CH340" in p[1] and "2" in p[0]:
                 print(p[1])
@@ -74,7 +87,7 @@ class BraintechTERMINAL(Braintech):
                 with serial.Serial("COM14", 115200, timeout=1) as ser:
                     print(ser.readline())
             else:
-                print("$MESSAGE >>>Try Again")
+                print("Try Again!")
 
     def do_clear(self, inp):
         os.system("cls")
@@ -94,6 +107,11 @@ class BraintechTERMINAL(Braintech):
     credit                  --- Credit / Copyright
     colour                  --- Colour of the Terminal
     fit                     --- Auto Adjust Window Size
+    powershell              --- Activate Powershell
+    python                  --- Activate iPython shell
+    arduinoHOW              --- Arduino Source code for
+                                serial communication
+    
     """
         print(help)
 
@@ -116,7 +134,7 @@ class BraintechTERMINAL(Braintech):
  +---------------------------------------------------+
  | Developer Email:  John@braintechgroup.com         |
  | Donate : https://www.paypal.me/johnmelody         |
- +---------------------------------------------------+ 
+ +-------------------------- -------------------------+ 
         """
         print(credit)
 
@@ -125,5 +143,37 @@ class BraintechTERMINAL(Braintech):
 
     def do_fit(self, inp):
         os.system("MODE 90, 40")
+
+    def do_powershell(self, inp):
+        os.system("powershell")
+
+    def do_braintech(selfself, inp):
+        import credit as braintech
+        return braintech()
+
+    def do_python(self, inp):
+        print("WELCOME TO PYTHON TERMINAL")
+        os.system("ipython")
+
+    def do_arduinoHOW(self, inp):
+        arduinocode = """
+const int analogInPin = A0;  // Analog input pin that the potentiometer is attached to
+int sensorValue = 0;        // value read from the pot
+void setup() {
+  // initialize serial communications at 9600 bps:
+  Serial.begin(115200);
+}
+void loop() {
+  // read the analog in value:
+  sensorValue = analogRead(analogInPin);
+  // print the results to the serial monitor:
+  Serial.println(sensorValue);
+  // wait 2 milliseconds before the next loop
+  delay(5);
+}
+"""
+        print(arduinocode)
+
+
 
 BraintechTERMINAL().cmdloop()
