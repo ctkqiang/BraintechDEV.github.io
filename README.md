@@ -1,3 +1,4 @@
+#Brain EEG Monitor
 ![bt](https://user-images.githubusercontent.com/44691957/65367340-79ce9c00-dc62-11e9-80e8-095d77ac0202.jpg)
 
 This is a protoype of the software. 
