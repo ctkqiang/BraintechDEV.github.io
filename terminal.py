@@ -18,6 +18,7 @@ from subprocess import Popen, PIPE
 
 
 class BraintechTERMINAL(Braintech):
+    os.system("MODE 85, 45")
     os.system("title Braintech Serial Monitor")
     print("Copyright (C) BRAINTECH SDN BHD MALAYSIA")
     print("Type \"help\" for HELP on the usage.")
@@ -113,6 +114,8 @@ class BraintechTERMINAL(Braintech):
     arduinoHOW              --- Arduino Source code for
                                 serial communication
     mind_data               --- About Mind Data Module
+    mind_data_protocol      --- Braintech Mind Data
+                                protocol. 
     """
         print(help)
 
@@ -124,7 +127,7 @@ class BraintechTERMINAL(Braintech):
 
 
     def do_echo(self, inp):
-        print("$OUTPUT >>> "+"{}".format(inp))
+        print("{}".format(inp))
 
     def do_credit(self, inp):
         credit = """  
@@ -178,6 +181,22 @@ void loop() {
     def do_mind_data(self, inp):
         os.system("start http://www.mindatabci.com/en/index.aspx")
 
-
+    def do_mind_data_protocol(self, inp):
+        info = """
+A5 5A 02 39 02 33 01 EB 02 22 01 B3 02 00  02 00 0F
+----------------------------------------------------
+|  |  |  |   |     |     |     |     |     |
+|  |  |  |   |     |     |     |     |     +-------- CH6
+|  |  |  |   |     |     |     |     +-------------- CH5
+|  |  |  |   |     |     |     +-------------------- CH4
+|  |  |  |   |     |     +-------------------------- CH3
+|  |  |  |   |     +-------------------------------- CH2
+|  |  |  |   +-------------------------------------- CH1
+|  |  |  +------------------------------------------ Packet counter. +=1
+|  |  +--------------------------------------------- Version = {2}
+|  +------------------------------------------------ Synchronisation byte 2 = 0x5a
++--------------------------------------------------- Synchronisation byte 1 = 0xa5 
+        """
+        print(info)
 
 BraintechTERMINAL().cmdloop()
