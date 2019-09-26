@@ -15,6 +15,7 @@ import serial
 import os
 import threading
 from subprocess import Popen, PIPE
+import time
 
 
 class BraintechTERMINAL(Braintech):
@@ -32,62 +33,90 @@ class BraintechTERMINAL(Braintech):
     def do_read_serial(self, inp):
         ports = list(serial.tools.list_ports.comports())
         for p in ports:
-            if "USB-SERIAL CH340" in p[1] and "4" in p[0]:
+            if "USB-SERIAL CH340" in p[1] and "1" in p[0]:
                 print(p[1])
-                with serial.Serial("COM4", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM1", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "2" in p[0]:
                 print(p[1])
-                with serial.Serial("COM2", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM2", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "3" in p[0]:
                 print(p[1])
-                with serial.Serial("COM3", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM3", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "4" in p[0]:
                 print(p[1])
-                with serial.Serial("COM4", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM4", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(1)
             elif "USB-SERIAL CH340" in p[1] and "5" in p[0]:
                 print(p[1])
-                with serial.Serial("COM5", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM5", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "6" in p[0]:
                 print(p[1])
-                with serial.Serial("COM6", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM6", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "7" in p[0]:
                 print(p[1])
-                with serial.Serial("COM7", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM7", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "8" in p[0]:
                 print(p[1])
-                with serial.Serial("COM8", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM8", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "9" in p[0]:
                 print(p[1])
-                with serial.Serial("COM9", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM9", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "10" in p[0]:
                 print(p[1])
-                with serial.Serial("COM10", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM10", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "11" in p[0]:
                 print(p[1])
-                with serial.Serial("COM11", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM11", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "12" in p[0]:
                 print(p[1])
-                with serial.Serial("COM12", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM12", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "13" in p[0]:
                 print(p[1])
-                with serial.Serial("COM13", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM13", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             elif "USB-SERIAL CH340" in p[1] and "14" in p[0]:
                 print(p[1])
-                with serial.Serial("COM14", 115200, timeout=1) as ser:
-                    print(ser.readline())
+                while 1:
+                    with serial.Serial("COM14", 115200, timeout=1) as ser:
+                        print(ser.readline(17))
+                        time.sleep(0.1)
             else:
                 print("Try Again!")
 
@@ -179,12 +208,45 @@ void loop() {
         print(arduinocode)
 
     def do_mind_data(self, inp):
+        #import webview
+        #window = webview.create_window('Braintech Mind Data Module', 'http://www.mindatabci.com/en/index.aspx')
+        #webview.start()
         os.system("start http://www.mindatabci.com/en/index.aspx")
 
     def do_mind_data_protocol(self, inp):
         info = """
+This is a 2-Channel EEG Module;
+This Module is used to collect EEG data for: 
+16-bits time domain signal conversion;
+{information} : {
+        3.3v; (built-in 50hz filter circuit)
+        serial OUTPUT config {
+            check digit: NONE;
+            Data bit: 8-bits;
+            Stop bit: 1-bit
+            BAUD rate: 115200
+            }
+    }
+1: sync0;          # synchronisation byte 1 = 0xa5   ()
+2: sync1;          # synchronisation byte 2 = 0x5a
+3: version;        # version number = 2
+4: count;          # packet counter. Increases by 1 each packet.
+5: Chn1high        # channel 1 high byte
+6: Chn1low         # channel 2 low byte
+7: Chn2high        # channel 2 high byte
+8: Chn2low         # ...
+9: Chn3high
+10: Chn3low
+11: Chn4high
+12: Chn4low
+13: Chn5high
+14: Chn5low
+15: Chn6high
+16: Chn6low        # channel 6 low byte
+17: switches;      # State of PD5 to PD2, in bits 3 to 0.
+====================================================
 A5 5A 02 39 02 33 01 EB 02 22 01 B3 02 00  02 00 0F
-----------------------------------------------------
+====================================================
 |  |  |  |   |     |     |     |     |     |
 |  |  |  |   |     |     |     |     |     +-------- CH6
 |  |  |  |   |     |     |     |     +-------------- CH5
