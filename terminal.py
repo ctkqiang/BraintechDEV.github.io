@@ -16,6 +16,7 @@ import os
 import threading
 from subprocess import Popen, PIPE
 
+
 class BraintechTERMINAL(Braintech):
     os.system("title Braintech Serial Monitor")
     print("Copyright (C) BRAINTECH SDN BHD MALAYSIA")
@@ -111,7 +112,7 @@ class BraintechTERMINAL(Braintech):
     python                  --- Activate iPython shell
     arduinoHOW              --- Arduino Source code for
                                 serial communication
-    
+    mind_data               --- About Mind Data Module
     """
         print(help)
 
@@ -152,7 +153,7 @@ class BraintechTERMINAL(Braintech):
         return braintech()
 
     def do_python(self, inp):
-        print("WELCOME TO PYTHON TERMINAL")
+        print("WELCOME TO PYTHON TERMINAL \n")
         os.system("ipython")
 
     def do_arduinoHOW(self, inp):
@@ -173,6 +174,9 @@ void loop() {
 }
 """
         print(arduinocode)
+
+    def do_mind_data(self, inp):
+        os.system("start http://www.mindatabci.com/en/index.aspx")
 
 
 
